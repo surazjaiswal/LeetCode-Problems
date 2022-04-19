@@ -11,23 +11,11 @@
  */
 class Solution {
 public:
-    vector<TreeNode*> vt;
-    vector<int> nums;
+    TreeNode *first=NULL, *second=NULL;
+    TreeNode *prev = new TreeNode(INT_MIN);
     void recoverTree(TreeNode* root) {
         inOrder(root);
-        sort(nums.begin(),nums.end());
-
-        TreeNode *first=NULL,*second=NULL;
-        int i=0;
-        for(auto it : vt){
-            if(it->val == nums[i++])
-                continue;
-            if(first)
-                second = it;
-            else
-                first = it;
-        }
-        
+      
         swap(first->val,second->val);
     }
     
@@ -35,8 +23,15 @@ public:
         if(!root)
             return;
         inOrder(root->left);
-        vt.push_back(root);
-        nums.push_back(root->val);
+        
+        if(first == NULL && prev->val > root->val)
+            first = prev;
+        
+        if(first != NULL && prev->val > root->val)
+            second = root;
+        
+        prev = root;
+        
         inOrder(root->right);
     }
 };
