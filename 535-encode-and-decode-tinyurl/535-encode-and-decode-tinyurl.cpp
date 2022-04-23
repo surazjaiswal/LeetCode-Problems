@@ -27,6 +27,7 @@ public:
         }
 
         string shortURL = "http://tinyurl.com/" + res;
+        cout<<shortURL<<endl;
         
         mp_L2S[longURL] = shortURL; // longURL --> shortURL
         mp_S2L[shortURL] = longURL; // shortURL --> longURL
