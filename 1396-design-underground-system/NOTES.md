@@ -1,1 +1,1 @@
-​
+https://leetcode.com/problems/design-underground-system/discuss/554879/C%2B%2BJavaPython-HashMap-and-Pair-Clean-and-Concise-O(1)
