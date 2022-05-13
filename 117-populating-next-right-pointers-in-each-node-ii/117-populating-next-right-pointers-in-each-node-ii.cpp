@@ -20,24 +20,28 @@ class Solution {
 public:
     Node* connect(Node* root) {
         
+        // to check if root is NULL
         if(!root)
             return root;
         
+        
+        // Using BFS Traversal
+        // queues to queue TreeNodes
         queue<Node*> q;
         q.push(root);
         
         while(!q.empty()){
-            int n=q.size();
+            int n=q.size(); // size of current level
             Node *temp;
             for(int i=0;i<n;i++){
                 temp = q.front();
                 q.pop();
-                if(i!=n-1)
-                    temp->next = q.front();
-                if(temp->left)
-                    q.push(temp->left);
+                if(i!=n-1) // check for the last node
+                    temp->next = q.front(); // populating next nodes
+                if(temp->left) 
+                    q.push(temp->left); // adding node to queue
                 if(temp->right)
-                    q.push(temp->right);
+                    q.push(temp->right); // adding node to queue
             }
         }
         return root;
