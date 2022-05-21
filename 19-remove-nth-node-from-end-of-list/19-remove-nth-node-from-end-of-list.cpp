@@ -15,24 +15,20 @@ public:
         if(!head->next)
             return NULL;
         
-        ListNode *curr = head;
-        int cnt=0;
-        while(curr){
+        ListNode *curr = head, *prev=NULL;
+        int cnt=1;
+        while(curr->next){
             cnt++;
+            prev=curr;
             curr = curr->next;
         }
         
-        n = cnt - n + 1;
+        n = cnt - n + 1; // nth form starting
         
-        curr=head;
-        ListNode *temp = head;
         if(cnt == n){
-            while(curr->next){
-                temp = curr;
-                curr = curr->next;
-            }
-            temp->next = NULL;
-            delete(curr);
+            ListNode *temp = prev->next;
+            prev->next = NULL;
+            delete(temp);
             
             return head;
         }
@@ -46,7 +42,7 @@ public:
         
         int i=1;
         curr = head;
-        temp = NULL;
+        ListNode *temp = NULL;
         while(i<n){
             temp=curr;
             curr = curr->next;
