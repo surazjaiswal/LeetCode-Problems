@@ -30,7 +30,7 @@ public:
         bool leftSum = getSum(node->left,sum,targetSum);
         bool rightSum = getSum(node->right,sum,targetSum);
         
-        sum-=node->val;
+        // sum-=node->val;
         
         return leftSum || rightSum;
     }
