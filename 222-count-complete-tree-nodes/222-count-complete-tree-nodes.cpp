@@ -12,23 +12,28 @@
 class Solution {
 public:
     int countNodes(TreeNode* root) {
-        if(root==NULL)
+        if(!root)
             return 0;
-        int count=0;
-        queue<TreeNode*> q;
-        q.push(root);
-        while(!q.empty()){
-            int n = q.size();
-            count+=n;
-            while(n--){
-                TreeNode * node = q.front();
-                q.pop();
-                if(node->left)
-                    q.push(node->left);
-                if(node->right)
-                    q.push(node->right);
-            }
+        
+        int leftCount=1,rightCount=1;
+        TreeNode *leftNode=root->left,*rightNode=root->right;
+        while(leftNode){
+            leftCount++;
+            leftNode = leftNode->left;
         }
-        return count;
+        while(rightNode){
+            rightCount++;
+            rightNode = rightNode->right;
+        }
+        
+        if(leftCount == rightCount){
+            int numNodes = pow(2,leftCount) - 1;
+            return numNodes;
+        }
+        
+        int leftTraverse = countNodes(root->left);
+        int rightTraverse = countNodes(root->right);
+        
+        return 1 + leftTraverse + rightTraverse;
     }
 };
