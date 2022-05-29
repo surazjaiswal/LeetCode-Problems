@@ -12,35 +12,21 @@
 class Solution {
 public:
     TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
-        int n=nums.size();
-        if(n==0)
-            return NULL;
-        
-        TreeNode *root = makeTree(nums,0,n-1);
-        return root;
-    }
-    
-    TreeNode *makeTree(vector<int> &nums, int i,int j){
-        if(i<=j){
-            int idx = getMax(nums,i,j);
-            cout<<nums[idx]<<" ";
-            TreeNode *node = new TreeNode(nums[idx]);
-            node->left = makeTree(nums,i,idx-1);
-            node->right = makeTree(nums,idx+1,j);
-            return node;
-        }
-        return NULL;
-    }
-    
-    int getMax(vector<int> &nums,int low,int high){
-        int maxVal = -1;
-        int idx=0;
-        for(int i = low;i<=high;i++){
-            if(nums[i] > maxVal){
-                maxVal = max(maxVal,nums[i]);
-                idx = i;
+        stack<TreeNode*> stk;
+            for (int num : nums) {
+                TreeNode* node = new TreeNode(num);
+                while (!stk.empty() && stk.top() -> val < node -> val) {
+                    node -> left = stk.top();
+                    stk.pop();
+                }
+                if (!stk.empty()) {
+                    stk.top() -> right = node;
+                }
+                stk.push(node);
             }
-        }
-        return idx;
+            while (stk.size() > 1) {
+                stk.pop();
+            }
+        return stk.top();
     }
 };
