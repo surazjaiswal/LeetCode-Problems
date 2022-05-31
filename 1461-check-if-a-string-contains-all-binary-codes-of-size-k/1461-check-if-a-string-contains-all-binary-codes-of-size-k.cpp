@@ -1,33 +1,21 @@
 class Solution {
 public:
-    vector<string> bins;
     bool hasAllCodes(string s, int k) {
         int n = s.length();
+        
         if(n < k)
             return false;
         
+        int bins = 1<<k;
+        
         set<string> st;
-        string ss = "";
-        int j=0;
-        while(j<=n){
-            
-            if(j<k){                
-                ss += s[j];
-                j++;
-                continue;
-            }
-            
+        for(int i=k;i <= n;i++){
+            string ss = s.substr(i-k,k);
             st.insert(ss);
-            ss.erase(0,1);
-            if(j<n)
-                ss = ss + s[j];
-            j++;    
+            if(st.size() == bins)
+                return true;
         }
         
-        int bins = pow(2,k);
-        if(st.size() == bins)
-            return true;
-               
         return false;
     }
 };
