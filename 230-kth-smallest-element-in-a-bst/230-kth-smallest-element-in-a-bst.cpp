@@ -12,17 +12,25 @@
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
-        vector<int> vt;
-        traverse(root,vt);
-        return vt[k-1];
+        int cnt = 0;
+        return traverse(root,cnt,k);
     }
     
-    void traverse(TreeNode* root,vector<int> &vt){
-        if(root==NULL)
-            return;
+    int traverse(TreeNode *root,int &cnt,int k){
+        if(!root)
+            return -1;
         
-        traverse(root->left,vt);
-        vt.push_back(root->val);
-        traverse(root->right,vt);
+        int L = traverse(root->left,cnt,k);
+        if(L != -1)
+            return L;
+        
+        cnt++;
+        if(cnt == k)
+            return root->val;
+        
+        return traverse(root->right,cnt,k);
+        
+        
+            
     }
 };
