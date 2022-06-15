@@ -11,17 +11,27 @@
  */
 class Solution {
 public:
-    set<int> st;
     bool findTarget(TreeNode* root, int k) {
-        return find(root,k);
+        vector<int> nums;
+        traverse(root,nums);
+        int i=0,j=nums.size()-1;
+        while(i<j){
+            int sum = nums[i] + nums[j];
+            if(sum ==k)
+                return true;
+            else if(sum < k)
+                i++;
+            else 
+                j--;
+        }
+        return false;
     }
-    bool find(TreeNode* node, int k){
-        if(node==NULL)
-            return false;
-        if(st.count(k-node->val))
-            return true;
-        else
-            st.insert(node->val);
-        return find(node->left,k) || find(node->right,k);
+    void traverse(TreeNode *root, vector<int> &nums){
+        if(!root)
+            return;
+        
+        traverse(root->left,nums);
+        nums.push_back(root->val);
+        traverse(root->right,nums);
     }
 };
