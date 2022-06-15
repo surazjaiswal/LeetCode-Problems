@@ -12,26 +12,32 @@
 class Solution {
 public:
     TreeNode* bstFromPreorder(vector<int>& preorder) {
-        TreeNode *root=NULL;
-        for(int num : preorder){
-            if(root==NULL){
-                root = new TreeNode(num);
-            }
-            else{
-                TreeNode *temp = root,*prev;
-                while(temp!=NULL){
-                    prev = temp;
-                    if(num > temp->val)
-                        temp=temp->right;
-                    else
-                        temp=temp->left;
-                }
-                if(num < prev->val)
-                    prev->left = new TreeNode(num);
-                else
-                    prev->right = new TreeNode(num);
-            }
-        }
+        TreeNode *root;
+        int i=0;
+        root = buildBST(root,i,INT_MIN,INT_MAX,preorder);
         return root;
+    }
+    
+    
+    TreeNode *buildBST(TreeNode *root, int &i, int min, int max, vector<int> &preorder){
+        // base case 
+        // if elements exhausted in preorder
+        if(i>=preorder.size())
+            return NULL;
+        // if current element is not in the required range
+        if(preorder[i] < min || preorder[i] > max)
+            return NULL;
+        // else ceate new node for current element
+        root = new TreeNode(preorder[i]);
+        i++;
+        
+        // recursive build for left and right parts
+        // since preorder (root, left, right)
+        
+        root->left = buildBST(root->left,i,min,root->val,preorder);
+        root->right = buildBST(root->right,i,root->val,max,preorder);
+        
+        return root;
+        
     }
 };
