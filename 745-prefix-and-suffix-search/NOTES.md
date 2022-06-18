@@ -1,0 +1,1 @@
+https://leetcode.com/problems/prefix-and-suffix-search/discuss/2165519/C%2B%2B-or-Use-Hashmap-or-Simple-solution-with-comments-or-DLC-June-Day-18
