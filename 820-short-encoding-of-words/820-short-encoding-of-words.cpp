@@ -1,9 +1,3 @@
-// class compare{
-//     bool operator()(string a, string b){
-//         return a.length() > b.length();
-//     }
-// };
-
 class Solution {
     unordered_set<string> s;
 public:
