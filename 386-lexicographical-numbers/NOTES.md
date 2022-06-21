@@ -1,1 +1,1 @@
-​
+https://leetcode.com/problems/lexicographical-numbers/discuss/86288/7-lines-simple-C%2B%2B-recursive-solution
