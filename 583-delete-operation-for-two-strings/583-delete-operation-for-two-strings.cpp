@@ -4,8 +4,8 @@ public:
         int m = word1.length(), n = word2.length();
         int dp[m+1][n+1];
         
-        for(int i=0;i<=m;i++){
-            for(int j=0;j<=n;j++){
+        for(int i=0;i<m+1;i++){
+            for(int j=0;j<n+1;j++){
                 if(i == 0 || j == 0){
                     dp[i][j] = 0;
                 }else{
@@ -16,9 +16,9 @@ public:
                 }
             }
         }
-        int lcs = dp[m][n];
-        int d1 = m - lcs;
-        int d2 = n - lcs;
+        int lcs = dp[m][n]; // length of lcs
+        int d1 = m - lcs; // number of deletion from word1 -> lcs
+        int d2 = n - lcs; // number of insertions from lcs -> word2
         return d1 + d2;
     }
 };
