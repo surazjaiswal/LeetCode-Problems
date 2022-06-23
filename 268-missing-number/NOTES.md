@@ -22,24 +22,3 @@ using the bitwise XOR operator to single out the missing number. How? First, we 
 ```
 class Solution {
 public:
-int missingNumber(vector<int>& nums) {
-int n = nums.size();
-for(int i=0;i<n;i++){
-if(abs(nums[i])!=n){
-int pos = abs(nums[i]);
-nums[pos] *= -1;
-}
-}
-for(int i=0;i<n;i++){
-if(nums[i]<0){
-continue;
-}
-return i;
-}
-return n;
-}
-};
-```
-​
-​
-​
