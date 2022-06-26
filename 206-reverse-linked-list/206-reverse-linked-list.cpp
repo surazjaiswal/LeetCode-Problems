@@ -10,23 +10,23 @@
  */
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-        ListNode *currNode,*prev,*rightNode;
-        currNode=head;
-        prev=currNode;
-        while(currNode!=NULL){
-            if(currNode==head){
-                prev=currNode;
-                rightNode=currNode->next;
-                currNode->next=NULL;
-                currNode=rightNode;
-            }else{
-                rightNode=currNode->next;
-                currNode->next=prev;
-                prev=currNode;
-                currNode=rightNode;
-            }    
+    ListNode* reverseList(ListNode* root) {
+        if(!root)
+            return root;
+        
+        ListNode *temp = reverseList(root->next);
+        
+        if(!temp)
+            return root;
+        
+        ListNode *curr = root;
+        while(curr->next){
+            curr = curr->next;
         }
-        return prev;
+        
+        root->next = NULL;
+        curr->next = root;
+        
+        return temp;
     }
 };
