@@ -32,11 +32,12 @@ public:
                     string temp_word=word;
                     for(char ch='a';ch<='z';ch++){
                         temp_word[i]=ch;
-                        if(word.compare(temp_word)==0){// if the transformed word is same as current choosen word 
+                        if(word.compare(temp_word)==0){
+                            // if the transformed word is same as current choosen word 
                             continue;
                         }
-                        // check if transformed word is equal to end word or not
                         if(temp_word.compare(endWord)==0){
+                            // check if transformed word is equal to end word or not
                             return level+1;
                         }   
                         // now check if the transformed word is present in the wordList or not
