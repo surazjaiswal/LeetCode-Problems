@@ -12,21 +12,24 @@
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        // checking the root value is in required range or not
-        return isBST(root,LONG_MIN,LONG_MAX);
+        // root node ranges from (-inf,+inf)
+        // leftSubtree will range from (-inf,root->val]
+        // rightSubtree will range from [root->val,+inf)
+        // doing this recusievly
+        
+        return solve(root,LONG_MIN,LONG_MAX);
     }
     
-    bool isBST(TreeNode*root,long min,long max){
-        // base case
-        if(root == NULL)
+    bool solve(TreeNode *root, long min,long max){
+        if(!root)
             return true;
         
-        // rec case
         if(root->val > min && root->val < max){
-            bool isLeftBST = isBST(root->left,min,root->val);
-            bool isRightBST = isBST(root->right,root->val,max);
-            return (isLeftBST && isRightBST);
+            int left = solve(root->left,min,root->val);
+            int right = solve(root->right,root->val,max);
+            return (left && right);
         }
-        else return false;
+        
+        return false;
     }
 };
