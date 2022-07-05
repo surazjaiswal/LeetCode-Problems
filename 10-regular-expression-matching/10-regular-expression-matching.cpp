@@ -41,6 +41,7 @@ public:
                     
                     // now if above can not then check if adding prev char of * match the string
                     // that is check if the added char is same as last char of string or not
+                    // IMP : '.' can match any char in string, also check if there's a '.' before '*'
                     // if its not same then continue as it will not contribute any to ans
                     // if its same then we have last char match, now assume last chars are removed
                     // now we have to check if the rest of string and pattern including the * pattern
