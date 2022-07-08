@@ -13,7 +13,7 @@ public:
     bool operator()(values *a, values *b){
         if(a->cnt == b->cnt)
             return a->str > b->str;
-        return a->cnt < b->cnt;
+        return a->cnt < b->cnt; // this will create maxHeap
     }
 };
 
