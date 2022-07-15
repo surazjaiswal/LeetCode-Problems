@@ -1,5 +1,2 @@
-# Leetcode
-
-| # | Title | Solution | Runtime |
-|---| ----- | -------- | ------- |
-|125|[ Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)|[C++](./solutions/125.%20Valid%20Palindrome.cpp)|4 ms|
+# LeetCode-Problems
+Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
